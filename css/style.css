@@ -1,0 +1,220 @@
+
+/* =================================
+   MUSICFLY — TEMA BORBOLETAS 🦋
+================================= */
+
+.admin-body {
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(112, 70, 200, 0.20),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255, 158, 207, 0.12),
+            transparent 30%
+        ),
+        #171225;
+
+    color: #f8f2ff;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Cabeçalho */
+
+.admin-header {
+    position: relative;
+    overflow: hidden;
+    padding: 22px 5%;
+    background: rgba(29, 21, 47, 0.95);
+    border-bottom: 1px solid rgba(215, 168, 255, 0.25);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.admin-header h1 {
+    color: #d7a8ff;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.admin-header h1::after {
+    content: " ✨";
+    font-size: 16px;
+}
+
+#emailAdmin {
+    color: #d8c8ef;
+    font-size: 14px;
+}
+
+/* Conteúdo principal */
+
+.admin-container {
+    max-width: 1000px;
+    padding-bottom: 40px;
+}
+
+.admin-container > h2 {
+    color: #e5c9ff;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.admin-container > h2::before {
+    content: "🦋 ";
+}
+
+.admin-container > p {
+    color: #c5b5dc;
+}
+
+/* Cartões */
+
+.admin-card {
+    position: relative;
+    overflow: hidden;
+    background: rgba(39, 29, 59, 0.92);
+    border: 1px solid rgba(215, 168, 255, 0.20);
+    border-radius: 20px;
+    padding: 26px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.admin-card:hover {
+    border-color: rgba(215, 168, 255, 0.55);
+}
+
+.admin-card h3 {
+    color: #e5c9ff;
+    font-size: 21px;
+}
+
+.admin-card h3::before {
+    content: "✦ ";
+    color: #ff9ecf;
+}
+
+/* Campos do formulário */
+
+#formMusica label {
+    color: #e8dcf7;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+#formMusica input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 13px 15px;
+    color: #fff7ff;
+    background: #211a31;
+    border: 1px solid #4c3a68;
+    border-radius: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#formMusica input::placeholder {
+    color: #9989af;
+}
+
+#formMusica input:focus {
+    outline: none;
+    border-color: #d7a8ff;
+    box-shadow: 0 0 0 3px rgba(215, 168, 255, 0.15);
+}
+
+/* Botões */
+
+.admin-buttons button,
+.admin-header button {
+    padding: 11px 18px;
+    color: #fff;
+    background: linear-gradient(135deg, #7046c8, #a75ed0);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+}
+
+.admin-buttons button:hover,
+.admin-header button:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(167, 94, 208, 0.25);
+}
+
+.admin-header button {
+    background: #38264e;
+    border-color: #75528f;
+}
+
+#btnCancelar {
+    background: #493954;
+}
+
+.admin-buttons button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Lista de músicas */
+
+.musica-admin {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(215, 168, 255, 0.16);
+}
+
+.musica-admin img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border: 2px solid #74529b;
+    border-radius: 13px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.musica-admin-info h4 {
+    color: #f2e5ff;
+    font-size: 17px;
+}
+
+.musica-admin-info p {
+    color: #c5b5dc;
+    font-size: 14px;
+}
+
+/* Mensagens */
+
+#mensagem {
+    color: #e4c5ff;
+    font-weight: 600;
+}
+
+/* Acessibilidade: foco visível */
+
+.admin-body button:focus-visible {
+    outline: 2px solid #ff9ecf;
+    outline-offset: 3px;
+}
+
+/* Celulares */
+
+@media (max-width: 600px) {
+    .admin-container > h2 {
+        font-size: 24px;
+    }
+
+    .admin-card {
+        padding: 18px;
+        border-radius: 15px;
+    }
+
+    .musica-admin {
+        align-items: flex-start;
+    }
+}
