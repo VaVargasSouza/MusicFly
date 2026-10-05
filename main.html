@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MusicFly | Sua música</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body class="main-body">
+
+    <header class="main-header">
+        <h1>🦋 MusicFly</h1>
+
+        <div class="usuario-area">
+            <span id="emailUsuario"></span>
+            <button id="btnSair" type="button">Sair</button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="boas-vindas">
+            <h2>Suas músicas</h2>
+            <p>Encontre sua próxima música favorita.</p>
+        </section>
+
+        <section class="biblioteca">
+            <h3>Músicas disponíveis</h3>
+
+            <p id="mensagem" role="status" aria-live="polite">
+                Carregando músicas...
+            </p>
+
+            <div id="listaMusicas" class="lista-musicas"></div>
+        </section>
+    </main>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
