@@ -1,0 +1,299 @@
+
+* {
+    box-sizing: border-box;
+}
+
+.usuario-body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #f8f2ff;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(112, 70, 200, 0.35),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(215, 168, 255, 0.18),
+            transparent 35%
+        ),
+        #171225;
+
+    overflow-x: hidden;
+}
+
+
+.pagina-acesso {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+}
+
+
+.card-acesso {
+    width: min(440px, 100%);
+
+    padding: 42px;
+
+    background: rgba(41, 27, 64, 0.88);
+
+    border: 1px solid rgba(215, 168, 255, 0.18);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45),
+        0 0 45px rgba(112, 70, 200, 0.15);
+
+    backdrop-filter: blur(14px);
+}
+
+
+.logo-area {
+    text-align: center;
+
+    margin-bottom: 34px;
+}
+
+.logo-borboleta {
+    font-size: 58px;
+
+    line-height: 1;
+
+    margin-bottom: 12px;
+
+    filter:
+        drop-shadow(
+            0 0 18px rgba(215, 168, 255, 0.45)
+        );
+}
+
+.logo-area h1 {
+    margin: 0;
+
+    color: #d7a8ff;
+
+    font-size: 38px;
+
+    letter-spacing: -1px;
+}
+
+.logo-area p {
+    margin: 10px 0 0;
+
+    color: #c4b5d8;
+
+    font-size: 14px;
+}
+
+
+.formulario-acesso h2 {
+    margin: 0;
+
+    color: #f8f2ff;
+
+    font-size: 26px;
+
+    text-align: center;
+}
+
+.descricao {
+    margin: 8px 0 28px;
+
+    color: #a99ab9;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #e8d5ff;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid #49345e;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #171225;
+
+    color: #f8f2ff;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+}
+
+.campo input::placeholder {
+    color: #756982;
+}
+
+.campo input:focus {
+    border-color: #a970ff;
+
+    background: #1d1630;
+
+    box-shadow:
+        0 0 0 3px rgba(112, 70, 200, 0.18);
+}
+
+
+.botoes-acesso {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+
+    margin-top: 26px;
+}
+
+.botoes-acesso button,
+.botao-logout {
+    width: 100%;
+
+    padding: 13px 18px;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.botao-principal {
+    border: none;
+
+    background: #7046c8;
+
+    color: white;
+
+    box-shadow:
+        0 8px 22px rgba(112, 70, 200, 0.25);
+}
+
+.botao-principal:hover {
+    background: #865de0;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 26px rgba(112, 70, 200, 0.35);
+}
+
+
+.botao-secundario {
+    border: 1px solid #7046c8;
+
+    background: transparent;
+
+    color: #d7a8ff;
+}
+
+.botao-secundario:hover {
+    background: rgba(112, 70, 200, 0.12);
+
+    border-color: #a970ff;
+
+    transform: translateY(-2px);
+}
+
+
+
+.botao-logout {
+    margin-top: 18px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #8e809e;
+
+    font-size: 13px;
+
+    box-shadow: none;
+}
+
+.botao-logout:hover {
+    color: #d7a8ff;
+
+    background: transparent;
+
+    transform: none;
+}
+
+
+button:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none !important;
+}
+
+
+@media (max-width: 520px) {
+
+    .pagina-acesso {
+        padding: 25px 15px;
+    }
+
+    .card-acesso {
+        padding: 32px 24px;
+
+        border-radius: 20px;
+    }
+
+    .logo-borboleta {
+        font-size: 50px;
+    }
+
+    .logo-area h1 {
+        font-size: 32px;
+    }
+
+    .formulario-acesso h2 {
+        font-size: 23px;
+    }
+}
