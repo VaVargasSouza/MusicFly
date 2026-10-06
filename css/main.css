@@ -1,148 +1,264 @@
-
-/* MUSICFLY — TELA PRINCIPAL */
+/* ========================================
+   PÁGINA PRINCIPAL
+======================================== */
 
 .main-body {
-    margin: 0;
     min-height: 100vh;
-    background: #171225;
-    color: #f8f2ff;
-    font-family: Arial, sans-serif;
 }
 
+
+/* ========================================
+   HEADER
+======================================== */
+
 .main-header {
+    min-height: 72px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 20px 5%;
-    background: #291b40;
-    border-bottom: 1px solid #49345e;
+
+    gap: 20px;
+
+    padding: 15px 35px;
+
+    background: rgba(13, 4, 18, 0.88);
+
+    border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    backdrop-filter: blur(15px);
 }
 
 .main-header h1 {
-    margin: 0;
-    color: #d7a8ff;
-    font-size: 28px;
+    font-size: 26px;
+
+    white-space: nowrap;
 }
+
+
+/* ========================================
+   ÁREA DO USUÁRIO
+======================================== */
 
 .usuario-area {
     display: flex;
     align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
+
+    gap: 15px;
 }
 
 #emailUsuario {
-    color: #e2d4f5;
-    overflow-wrap: anywhere;
+    color: #cbb5d7;
+
+    font-size: 14px;
+
+    max-width: 250px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.main-body button {
-    padding: 10px 18px;
-    border: none;
+
+/* ========================================
+   BOTÃO SAIR
+======================================== */
+
+#btnSair {
+    padding: 9px 17px;
+
     border-radius: 10px;
-    background: #7046c8;
-    color: white;
+
+    background: #7b2cbf;
+
+    color: #ffffff;
+
     font-weight: bold;
-    cursor: pointer;
+
+    transition: background 0.2s;
 }
 
-.main-body button:hover {
-    background: #865de0;
+#btnSair:hover {
+    background: #9d4edd;
 }
 
-.main-body button:disabled {
-    opacity: 0.6;
-    cursor: wait;
-}
+
+/* ========================================
+   CONTAINER
+======================================== */
 
 .main-container {
-    width: min(1100px, 90%);
-    margin: 35px auto;
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 50px 25px 70px;
 }
 
+
+/* ========================================
+   BOAS-VINDAS
+======================================== */
+
 .boas-vindas {
-    margin-bottom: 35px;
+    margin-bottom: 45px;
 }
 
 .boas-vindas h2 {
-    margin-bottom: 8px;
-    color: #d7a8ff;
-    font-size: 30px;
+    font-size: 34px;
+
+    margin-bottom: 10px;
 }
 
 .boas-vindas p {
-    color: #c4b5d8;
+    color: #bca6c8;
+
+    font-size: 16px;
 }
 
+
+/* ========================================
+   BIBLIOTECA
+======================================== */
+
 .biblioteca h3 {
-    margin-bottom: 22px;
-    color: #e8d5ff;
     font-size: 22px;
+
+    margin-bottom: 20px;
 }
+
+
+/* ========================================
+   MENSAGEM
+======================================== */
+
+#mensagem {
+    color: #aa96b5;
+
+    margin-bottom: 20px;
+}
+
+
+/* ========================================
+   LISTA
+======================================== */
 
 .lista-musicas {
     display: grid;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(min(100%, 280px), 1fr)
-    );
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(280px, 1fr)
+        );
+
     gap: 18px;
 }
 
+
+/* ========================================
+   CARD DA MÚSICA
+======================================== */
+
 .musica-card {
-    min-width: 0;
     padding: 20px;
-    background: #291b40;
-    border: 1px solid #49345e;
-    border-radius: 16px;
-    transition: border-color 0.2s, transform 0.2s;
+
+    background: rgba(31, 10, 45, 0.85);
+
+    border: 1px solid rgba(157, 78, 221, 0.22);
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
 .musica-card:hover {
-    border-color: #a970ff;
     transform: translateY(-3px);
+
+    border-color: rgba(157, 78, 221, 0.55);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ========================================
+   INFORMAÇÕES
+======================================== */
+
+.musica-info {
+    margin-bottom: 16px;
 }
 
 .musica-info h4 {
-    margin: 0 0 8px;
-    color: #f8f2ff;
     font-size: 18px;
-    overflow-wrap: anywhere;
+
+    margin-bottom: 6px;
+
+    color: #ffffff;
 }
 
 .musica-info p {
-    margin: 0 0 18px;
-    color: #c4b5d8;
-    overflow-wrap: anywhere;
+    color: #bca6c8;
+
+    font-size: 14px;
 }
+
+
+/* ========================================
+   ÁUDIO
+======================================== */
 
 .musica-card audio {
-    display: block;
     width: 100%;
-    max-width: 100%;
+
+    height: 40px;
 }
 
-#mensagem {
-    color: #d7a8ff;
-    line-height: 1.6;
-}
 
-@media (max-width: 600px) {
+/* ========================================
+   CELULAR
+======================================== */
+
+@media (max-width: 650px) {
+
     .main-header {
-        padding: 18px 5%;
+        padding: 14px 18px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
     }
 
-    .main-header h1 {
-        font-size: 24px;
+    .usuario-area {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+    #emailUsuario {
+        max-width: calc(100% - 80px);
     }
 
     .main-container {
-        margin: 25px auto;
+        padding: 35px 18px 50px;
     }
 
     .boas-vindas h2 {
-        font-size: 26px;
+        font-size: 28px;
     }
+
+    .lista-musicas {
+        grid-template-columns: 1fr;
+    }
+
 }

@@ -2,126 +2,161 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MusicFly | Acesso</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="./css/usuario.css">
+    <meta
+        name="theme-color"
+        content="#7b2cbf"
+    >
+
+    <meta
+        name="description"
+        content="MusicFly - Seu aplicativo de músicas"
+    >
+
+    <link
+        rel="manifest"
+        href="./manifest.json"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="./icons/icon-192.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/usuario.css"
+    >
+
+    <title>MusicFly | Entrar</title>
+
 </head>
+
 
 <body class="usuario-body">
 
-    <main class="pagina-acesso">
+    <main class="usuario-container">
 
-        <section class="card-acesso">
+        <section class="usuario-card">
 
-            <div class="logo-area">
-                <div class="logo-borboleta" aria-hidden="true">
-                    🦋
-                </div>
+            <h1>🦋 MusicFly</h1>
 
-                <h1>MusicFly</h1>
+            <p>
+                Entre ou crie sua conta
+            </p>
 
-                <p>
-                    Sua música. Seu momento.
-                </p>
+
+            <!-- NOME -->
+
+            <div class="campo">
+
+                <label for="nome">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome"
+                    autocomplete="name"
+                >
+
             </div>
 
 
-            <div class="formulario-acesso">
+            <!-- EMAIL -->
 
-                <h2>Bem-vindo!</h2>
+            <div class="campo">
 
-                <p class="descricao">
-                    Entre na sua conta ou crie uma nova.
-                </p>
+                <label for="email">
+                    E-mail
+                </label>
 
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    autocomplete="email"
+                >
 
-                <div class="campo">
-
-                    <label for="nome">
-                        Nome
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nome"
-                        placeholder="Digite seu nome"
-                        autocomplete="name"
-                    >
-
-                </div>
+            </div>
 
 
-                <div class="campo">
+            <!-- SENHA -->
 
-                    <label for="email">
-                        E-mail
-                    </label>
+            <div class="campo">
 
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Digite seu e-mail"
-                        autocomplete="email"
-                    >
+                <label for="senha">
+                    Senha
+                </label>
 
-                </div>
+                <input
+                    type="password"
+                    id="senha"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                >
 
-
-                <div class="campo">
-
-                    <label for="senha">
-                        Senha
-                    </label>
-
-                    <input
-                        type="password"
-                        id="senha"
-                        placeholder="Digite sua senha"
-                        autocomplete="current-password"
-                    >
-
-                </div>
+            </div>
 
 
-                <div class="botoes-acesso">
+            <!-- BOTÕES -->
 
-                    <button
-                        id="login"
-                        type="button"
-                        class="botao-principal"
-                    >
-                        Entrar
-                    </button>
+            <div class="botoes">
 
-                    <button
-                        id="cadastrar"
-                        type="button"
-                        class="botao-secundario"
-                    >
-                        Criar conta
-                    </button>
-
-                </div>
+                <button
+                    id="login"
+                    type="button"
+                >
+                    Entrar
+                </button>
 
 
                 <button
-                    id="logout"
+                    id="cadastrar"
                     type="button"
-                    class="botao-logout"
                 >
-                    Sair da conta
+                    Criar conta
                 </button>
 
             </div>
+
+
+            <button
+                id="logout"
+                type="button"
+            >
+                Sair da conta
+            </button>
 
         </section>
 
     </main>
 
-    <script type="module"  src="./js/usuario.js" ></script>
+
+    <!-- JAVASCRIPT -->
+
+    <script
+        type="module"
+        src="./js/usuario.js"
+    ></script>
+
+    <script
+        src="./js/pwa.js"
+    ></script>
 
 </body>
 

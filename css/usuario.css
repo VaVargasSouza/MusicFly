@@ -1,132 +1,91 @@
-
-* {
-    box-sizing: border-box;
-}
+/* ========================================
+   PÁGINA DE USUÁRIO
+======================================== */
 
 .usuario-body {
-    margin: 0;
-    min-height: 100vh;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    color: #f8f2ff;
-
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(112, 70, 200, 0.35),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(215, 168, 255, 0.18),
-            transparent 35%
-        ),
-        #171225;
-
-    overflow-x: hidden;
-}
-
-
-.pagina-acesso {
     min-height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 40px 20px;
+    padding: 20px;
 }
 
 
-.card-acesso {
-    width: min(440px, 100%);
+/* ========================================
+   CONTAINER
+======================================== */
 
-    padding: 42px;
+.usuario-container {
+    width: 100%;
+    max-width: 430px;
+}
 
-    background: rgba(41, 27, 64, 0.88);
 
-    border: 1px solid rgba(215, 168, 255, 0.18);
+/* ========================================
+   CARD
+======================================== */
+
+.usuario-card {
+    width: 100%;
+
+    padding: 35px;
+
+    background: rgba(30, 8, 45, 0.92);
+
+    border: 1px solid rgba(157, 78, 221, 0.35);
 
     border-radius: 24px;
 
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.45),
-        0 0 45px rgba(112, 70, 200, 0.15);
+        0 20px 60px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(123, 44, 191, 0.12);
 
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(12px);
 }
 
 
-.logo-area {
+/* ========================================
+   TÍTULO
+======================================== */
+
+.usuario-card h1 {
     text-align: center;
 
-    margin-bottom: 34px;
+    font-size: 36px;
+
+    margin-bottom: 10px;
+
+    color: #ffffff;
 }
 
-.logo-borboleta {
-    font-size: 58px;
-
-    line-height: 1;
-
-    margin-bottom: 12px;
-
-    filter:
-        drop-shadow(
-            0 0 18px rgba(215, 168, 255, 0.45)
-        );
-}
-
-.logo-area h1 {
-    margin: 0;
-
-    color: #d7a8ff;
-
-    font-size: 38px;
-
-    letter-spacing: -1px;
-}
-
-.logo-area p {
-    margin: 10px 0 0;
-
-    color: #c4b5d8;
-
-    font-size: 14px;
-}
-
-
-.formulario-acesso h2 {
-    margin: 0;
-
-    color: #f8f2ff;
-
-    font-size: 26px;
-
+.usuario-card > p {
     text-align: center;
+
+    color: #c9b4d8;
+
+    margin-bottom: 30px;
+
+    font-size: 15px;
 }
 
-.descricao {
-    margin: 8px 0 28px;
 
-    color: #a99ab9;
-
-    font-size: 14px;
-
-    text-align: center;
-}
-
+/* ========================================
+   CAMPOS
+======================================== */
 
 .campo {
+    display: flex;
+    flex-direction: column;
+
     margin-bottom: 18px;
 }
 
 .campo label {
-    display: block;
+    margin-bottom: 8px;
 
-    margin-bottom: 7px;
-
-    color: #e8d5ff;
+    color: #eee0f5;
 
     font-size: 14px;
 
@@ -138,162 +97,137 @@
 
     padding: 14px 15px;
 
-    border: 1px solid #49345e;
+    border: 1px solid #4d2464;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     outline: none;
 
-    background: #171225;
+    background: #16091f;
 
-    color: #f8f2ff;
+    color: #ffffff;
 
     font-size: 15px;
 
     transition:
         border-color 0.2s,
-        box-shadow 0.2s,
-        background 0.2s;
+        box-shadow 0.2s;
 }
 
 .campo input::placeholder {
-    color: #756982;
+    color: #8f789c;
 }
 
 .campo input:focus {
-    border-color: #a970ff;
-
-    background: #1d1630;
+    border-color: #9d4edd;
 
     box-shadow:
-        0 0 0 3px rgba(112, 70, 200, 0.18);
+        0 0 0 3px rgba(157, 78, 221, 0.15);
 }
 
 
-.botoes-acesso {
-    display: flex;
+/* ========================================
+   BOTÕES
+======================================== */
 
+.botoes {
+    display: flex;
     flex-direction: column;
 
-    gap: 11px;
+    gap: 12px;
 
-    margin-top: 26px;
+    margin-top: 25px;
 }
 
-.botoes-acesso button,
-.botao-logout {
+.botoes button {
     width: 100%;
 
-    padding: 13px 18px;
+    padding: 14px;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     font-size: 15px;
 
     font-weight: bold;
 
-    cursor: pointer;
-
     transition:
         transform 0.2s,
-        background 0.2s,
-        border-color 0.2s,
-        box-shadow 0.2s;
+        opacity 0.2s,
+        background 0.2s;
 }
 
 
-.botao-principal {
-    border: none;
+/* ENTRAR */
 
-    background: #7046c8;
+#login {
+    background: #7b2cbf;
 
-    color: white;
-
-    box-shadow:
-        0 8px 22px rgba(112, 70, 200, 0.25);
+    color: #ffffff;
 }
 
-.botao-principal:hover {
-    background: #865de0;
+#login:hover {
+    background: #8e3ed0;
 
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 10px 26px rgba(112, 70, 200, 0.35);
+    transform: translateY(-1px);
 }
 
 
-.botao-secundario {
-    border: 1px solid #7046c8;
+/* CADASTRAR */
 
+#cadastrar {
     background: transparent;
 
-    color: #d7a8ff;
+    border: 1px solid #7b2cbf;
+
+    color: #d9b8ed;
 }
 
-.botao-secundario:hover {
-    background: rgba(112, 70, 200, 0.12);
+#cadastrar:hover {
+    background: rgba(123, 44, 191, 0.15);
 
-    border-color: #a970ff;
-
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 
+/* SAIR */
 
-.botao-logout {
+#logout {
+    width: 100%;
+
     margin-top: 18px;
 
-    border: none;
+    padding: 10px;
 
     background: transparent;
 
-    color: #8e809e;
+    color: #9578a3;
 
     font-size: 13px;
-
-    box-shadow: none;
 }
 
-.botao-logout:hover {
-    color: #d7a8ff;
-
-    background: transparent;
-
-    transform: none;
+#logout:hover {
+    color: #ffffff;
 }
 
 
-button:disabled {
-    opacity: 0.55;
+/* ========================================
+   CELULAR
+======================================== */
 
-    cursor: not-allowed;
+@media (max-width: 480px) {
 
-    transform: none !important;
-}
-
-
-@media (max-width: 520px) {
-
-    .pagina-acesso {
-        padding: 25px 15px;
+    .usuario-body {
+        padding: 15px;
     }
 
-    .card-acesso {
-        padding: 32px 24px;
+    .usuario-card {
+        padding: 25px 20px;
 
         border-radius: 20px;
     }
 
-    .logo-borboleta {
-        font-size: 50px;
+    .usuario-card h1 {
+        font-size: 30px;
     }
 
-    .logo-area h1 {
-        font-size: 32px;
-    }
-
-    .formulario-acesso h2 {
-        font-size: 23px;
-    }
 }

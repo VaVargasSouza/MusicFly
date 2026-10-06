@@ -1,43 +1,138 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MusicFly | Sua música</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <meta
+        name="theme-color"
+        content="#7b2cbf"
+    >
+
+    <meta
+        name="description"
+        content="MusicFly - Ouça suas músicas favoritas"
+    >
+
+    <link
+        rel="manifest"
+        href="./manifest.json"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="./icons/icon-192.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/main.css"
+    >
+
+    <title>MusicFly | Suas músicas</title>
+
 </head>
+
+
 <body class="main-body">
 
+
+    <!-- CABEÇALHO -->
+
     <header class="main-header">
-        <h1>🦋 MusicFly</h1>
+
+        <h1>
+            🦋 MusicFly
+        </h1>
+
 
         <div class="usuario-area">
+
             <span id="emailUsuario"></span>
-            <button id="btnSair" type="button">Sair</button>
+
+            <button
+                id="btnSair"
+                type="button"
+            >
+                Sair
+            </button>
+
         </div>
+
     </header>
 
+
+    <!-- CONTEÚDO -->
+
     <main class="main-container">
+
+
+        <!-- BOAS-VINDAS -->
+
         <section class="boas-vindas">
-            <h2>Suas músicas</h2>
-            <p>Encontre sua próxima música favorita.</p>
+
+            <h2>
+                Suas músicas
+            </h2>
+
+            <p>
+                Encontre sua próxima música favorita.
+            </p>
+
         </section>
 
-        <section class="biblioteca">
-            <h3>Músicas disponíveis</h3>
 
-            <p id="mensagem" role="status" aria-live="polite">
+        <!-- BIBLIOTECA -->
+
+        <section class="biblioteca">
+
+            <h3>
+                Músicas disponíveis
+            </h3>
+
+
+            <p
+                id="mensagem"
+                role="status"
+                aria-live="polite"
+            >
                 Carregando músicas...
             </p>
 
-            <div id="listaMusicas" class="lista-musicas"></div>
+
+            <div
+                id="listaMusicas"
+                class="lista-musicas"
+            ></div>
+
         </section>
+
     </main>
 
-    <script type="module" src="./js/main.js"></script>
+
+    <!-- JAVASCRIPT -->
+
+    <script
+        type="module"
+        src="./js/main.js"
+    ></script>
+
+    <script
+        src="./js/pwa.js"
+    ></script>
+
 </body>
+
 </html>

@@ -1,15 +1,7 @@
 import {
-    auth,
     observarUsuario,
     fazerLogout
 } from "./auth.js";
-
-import { db } from "./database.js";
-
-import {
-    doc,
-    getDoc
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 import {
     cadastrarMusica,
@@ -19,82 +11,136 @@ import {
 } from "./musicas.js";
 
 
-const form = document.getElementById("formMusica");
-const lista = document.getElementById("listaMusicas");
-const mensagem = document.getElementById("mensagem");
-const emailAdmin = document.getElementById("emailAdmin");
-const tituloFormulario = document.getElementById("tituloFormulario");
-const btnSalvar = document.getElementById("btnSalvar");
-const btnCancelar = document.getElementById("btnCancelar");
-const btnSair = document.getElementById("btnSair");
-const btnMusica = document.getElementById("btnMusica");
+// ========================================
+// UID DO ADMINISTRADOR
+// ========================================
 
+const UID_ADMIN =
+    "QjjdnmbhsbVkN57Y8gRZw1c154y1";
+
+
+// ========================================
+// ELEMENTOS
+// ========================================
+
+const emailAdmin =
+    document.getElementById("emailAdmin");
+
+const btnMusica =
+    document.getElementById("btnMusica");
+
+const btnSair =
+    document.getElementById("btnSair");
+
+const formMusica =
+    document.getElementById("formMusica");
+
+const tituloFormulario =
+    document.getElementById("tituloFormulario");
+
+const titulo =
+    document.getElementById("titulo");
+
+const artista =
+    document.getElementById("artista");
+
+const audioUrl =
+    document.getElementById("audioUrl");
+
+const btnSalvar =
+    document.getElementById("btnSalvar");
+
+const btnCancelar =
+    document.getElementById("btnCancelar");
+
+const mensagem =
+    document.getElementById("mensagem");
+
+const listaMusicas =
+    document.getElementById("listaMusicas");
+
+
+// ========================================
+// ESTADO
+// ========================================
+
+let usuarioAtual = null;
+
+let ehAdmin = false;
 
 let idEdicao = null;
-let carregando = false;
 
 
 // ========================================
-// MENSAGEM
+// VERIFICAR USUÁRIO
 // ========================================
 
-function mostrarMensagem(texto) {
-    mensagem.textContent = texto;
-}
+observarUsuario(
+    async (usuario) => {
+
+        if (!usuario) {
+
+            window.location.replace(
+                "./usuario.html"
+            );
+
+            return;
+        }
 
 
-// ========================================
-// PEGAR DADOS DO FORMULÁRIO
-// ========================================
-
-function obterDadosFormulario() {
-    return {
-        titulo:
-            document.getElementById("titulo").value.trim(),
-
-        artista:
-            document.getElementById("artista").value.trim(),
-
-        audioUrl:
-            document.getElementById("audioUrl").value.trim()
-    };
-}
+        usuarioAtual = usuario;
 
 
-// ========================================
-// LIMPAR FORMULÁRIO
-// ========================================
-
-function limparFormulario() {
-
-    form.reset();
-
-    idEdicao = null;
-
-    tituloFormulario.textContent =
-        "Cadastrar música";
-
-    btnSalvar.textContent =
-        "Cadastrar música";
-
-    btnCancelar.hidden = true;
-}
+        emailAdmin.textContent =
+            usuario.email || "";
 
 
-// ========================================
-// CRIAR ELEMENTO
-// ========================================
+        // ========================================
+        // VERIFICA ADMIN PELO UID
+        // ========================================
 
-function criarTexto(tag, texto) {
+        ehAdmin =
+            usuario.uid === UID_ADMIN;
 
-    const elemento =
-        document.createElement(tag);
 
-    elemento.textContent =
-        texto || "";
+        console.log(
+            "UID:",
+            usuario.uid
+        );
 
-    return elemento;
-}
+        console.log(
+            "É administrador:",
+            ehAdmin
+        );
+
+
+        // ========================================
+        // NÃO É ADMIN
+        // ========================================
+
+        if (!ehAdmin) {
+
+            alert(
+                "Acesso permitido somente para o administrador."
+            );
+
+
+            window.location.replace(
+                "./main.html"
+            );
+
+
+            return;
+        }
+
+
+        // ========================================
+        // É ADMIN
+        // ========================================
+
+        await carregarMusicas();
+    }
+);
 
 
 // ========================================
@@ -103,212 +149,230 @@ function criarTexto(tag, texto) {
 
 async function carregarMusicas() {
 
-    lista.replaceChildren(
-        criarTexto(
-            "p",
-            "Carregando músicas..."
-        )
-    );
+    mensagem.textContent =
+        "Carregando músicas...";
+
+
+    listaMusicas.replaceChildren();
+
 
     try {
 
         const musicas =
             await listarMusicas();
 
-        lista.replaceChildren();
 
-        if (musicas.length === 0) {
+        if (
+            musicas.length === 0
+        ) {
 
-            lista.append(
-                criarTexto(
-                    "p",
-                    "Nenhuma música cadastrada."
-                )
-            );
+            mensagem.textContent =
+                "Ainda não há músicas cadastradas.";
 
             return;
         }
 
 
-        musicas.forEach(musica => {
-
-            const card =
-                document.createElement("article");
-
-            card.className =
-                "musica-admin";
+        mensagem.textContent = "";
 
 
-            const informacoes =
-                document.createElement("div");
+        musicas.forEach(
+            (musica) => {
 
-            informacoes.className =
-                "musica-admin-info";
+                const card =
+                    document.createElement(
+                        "article"
+                    );
 
-
-            informacoes.append(
-
-                criarTexto(
-                    "h4",
-                    musica.titulo
-                ),
-
-                criarTexto(
-                    "p",
-                    musica.artista
-                )
-
-            );
+                card.className =
+                    "musica-admin";
 
 
-            const botoes =
-                document.createElement("div");
+                const informacoes =
+                    document.createElement(
+                        "div"
+                    );
 
-            botoes.className =
-                "admin-buttons";
-
-
-            // ========================================
-            // BOTÃO EDITAR
-            // ========================================
-
-            const editar =
-                criarTexto(
-                    "button",
-                    "Editar"
-                );
-
-            editar.type = "button";
+                informacoes.className =
+                    "musica-info-admin";
 
 
-            editar.addEventListener(
-                "click",
-                () => {
+                const tituloMusica =
+                    document.createElement(
+                        "h4"
+                    );
 
-                    document.getElementById(
-                        "titulo"
-                    ).value =
-                        musica.titulo || "";
-
-
-                    document.getElementById(
-                        "artista"
-                    ).value =
-                        musica.artista || "";
+                tituloMusica.textContent =
+                    musica.titulo || "";
 
 
-                    document.getElementById(
-                        "audioUrl"
-                    ).value =
-                        musica.audioUrl || "";
+                const artistaMusica =
+                    document.createElement(
+                        "p"
+                    );
+
+                artistaMusica.textContent =
+                    musica.artista || "";
 
 
-                    idEdicao =
-                        musica.id;
+                const botoes =
+                    document.createElement(
+                        "div"
+                    );
+
+                botoes.className =
+                    "musica-acoes";
 
 
-                    tituloFormulario.textContent =
-                        "Editar música";
+                // ========================================
+                // BOTÃO EDITAR
+                // ========================================
+
+                const btnEditar =
+                    document.createElement(
+                        "button"
+                    );
+
+                btnEditar.type =
+                    "button";
+
+                btnEditar.textContent =
+                    "Editar";
 
 
-                    btnSalvar.textContent =
-                        "Salvar alterações";
+                btnEditar.addEventListener(
+                    "click",
+                    () => {
+
+                        if (!ehAdmin) {
+                            return;
+                        }
 
 
-                    btnCancelar.hidden =
-                        false;
+                        idEdicao =
+                            musica.id;
 
 
-                    form.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-            );
+                        titulo.value =
+                            musica.titulo || "";
 
 
-            // ========================================
-            // BOTÃO EXCLUIR
-            // ========================================
-
-            const excluir =
-                criarTexto(
-                    "button",
-                    "Excluir"
-                );
-
-            excluir.type = "button";
+                        artista.value =
+                            musica.artista || "";
 
 
-            excluir.addEventListener(
-                "click",
-                async () => {
-
-                    if (
-                        !confirm(
-                            `Deseja excluir "${musica.titulo}"?`
-                        )
-                    ) {
-                        return;
-                    }
+                        audioUrl.value =
+                            musica.audioUrl || "";
 
 
-                    excluir.disabled =
-                        true;
+                        tituloFormulario.textContent =
+                            "Editar música";
 
 
-                    try {
-
-                        await excluirMusica(
-                            musica.id
-                        );
+                        btnSalvar.textContent =
+                            "Salvar alterações";
 
 
-                        mostrarMensagem(
-                            "Música excluída com sucesso!"
-                        );
-
-
-                        await carregarMusicas();
-
-
-                    } catch (erro) {
-
-                        console.error(
-                            erro
-                        );
-
-
-                        mostrarMensagem(
-                            "Não foi possível excluir a música."
-                        );
-
-
-                        excluir.disabled =
+                        btnCancelar.hidden =
                             false;
+
+
+                        window.scrollTo({
+                            top: 0,
+                            behavior: "smooth"
+                        });
                     }
-
-                }
-            );
+                );
 
 
-            botoes.append(
-                editar,
-                excluir
-            );
+                // ========================================
+                // BOTÃO EXCLUIR
+                // ========================================
+
+                const btnExcluir =
+                    document.createElement(
+                        "button"
+                    );
+
+                btnExcluir.type =
+                    "button";
+
+                btnExcluir.textContent =
+                    "Excluir";
 
 
-            card.append(
-                informacoes,
-                botoes
-            );
+                btnExcluir.addEventListener(
+                    "click",
+                    async () => {
+
+                        if (!ehAdmin) {
+                            return;
+                        }
 
 
-            lista.append(
-                card
-            );
+                        const confirmar =
+                            confirm(
+                                `Deseja excluir "${musica.titulo}"?`
+                            );
 
-        });
+
+                        if (!confirmar) {
+                            return;
+                        }
+
+
+                        try {
+
+                            await excluirMusica(
+                                musica.id
+                            );
+
+
+                            mensagem.textContent =
+                                "Música excluída com sucesso.";
+
+
+                            await carregarMusicas();
+
+
+                        } catch (erro) {
+
+                            console.error(
+                                "Erro ao excluir música:",
+                                erro
+                            );
+
+
+                            mensagem.textContent =
+                                "Não foi possível excluir a música.";
+                        }
+                    }
+                );
+
+
+                informacoes.append(
+                    tituloMusica,
+                    artistaMusica
+                );
+
+
+                botoes.append(
+                    btnEditar,
+                    btnExcluir
+                );
+
+
+                card.append(
+                    informacoes,
+                    botoes
+                );
+
+
+                listaMusicas.append(
+                    card
+                );
+            }
+        );
 
 
     } catch (erro) {
@@ -319,61 +383,71 @@ async function carregarMusicas() {
         );
 
 
-        lista.replaceChildren(
-
-            criarTexto(
-                "p",
-                "Erro ao carregar músicas. Verifique a conexão e as regras do Firestore."
-            )
-
-        );
-
+        mensagem.textContent =
+            "Não foi possível carregar as músicas.";
     }
 }
 
 
 // ========================================
-// CADASTRAR / EDITAR MÚSICA
+// SALVAR MÚSICA
 // ========================================
 
-form.addEventListener(
+formMusica.addEventListener(
     "submit",
     async (evento) => {
 
         evento.preventDefault();
 
 
-        if (carregando) {
+        // ========================================
+        // SEGURANÇA
+        // ========================================
+
+        if (!ehAdmin) {
+
+            mensagem.textContent =
+                "Somente o administrador pode alterar músicas.";
+
             return;
         }
 
 
-        const dados =
-            obterDadosFormulario();
+        const dados = {
+
+            titulo:
+                titulo.value.trim(),
+
+            artista:
+                artista.value.trim(),
+
+            audioUrl:
+                audioUrl.value.trim()
+        };
 
 
         if (
-            Object.values(dados)
-                .some(valor => !valor)
+            !dados.titulo ||
+            !dados.artista ||
+            !dados.audioUrl
         ) {
 
-            mostrarMensagem(
-                "Preencha todos os campos."
-            );
+            mensagem.textContent =
+                "Preencha todos os campos.";
 
             return;
         }
 
 
-        carregando =
-            true;
-
-
-        btnSalvar.disabled =
-            true;
-
-
         try {
+
+            btnSalvar.disabled =
+                true;
+
+
+            // ========================================
+            // EDITAR
+            // ========================================
 
             if (idEdicao) {
 
@@ -383,25 +457,45 @@ form.addEventListener(
                 );
 
 
-                mostrarMensagem(
-                    "Música atualizada com sucesso!"
-                );
+                mensagem.textContent =
+                    "Música editada com sucesso.";
+
 
             } else {
+
+
+                // ========================================
+                // CADASTRAR
+                // ========================================
 
                 await cadastrarMusica(
                     dados
                 );
 
 
-                mostrarMensagem(
-                    "Música cadastrada com sucesso!"
-                );
-
+                mensagem.textContent =
+                    "Música cadastrada com sucesso.";
             }
 
 
-            limparFormulario();
+            formMusica.reset();
+
+
+            idEdicao =
+                null;
+
+
+            tituloFormulario.textContent =
+                "Cadastrar música";
+
+
+            btnSalvar.textContent =
+                "Cadastrar música";
+
+
+            btnCancelar.hidden =
+                true;
+
 
             await carregarMusicas();
 
@@ -414,22 +508,16 @@ form.addEventListener(
             );
 
 
-            mostrarMensagem(
-                "Não foi possível salvar. Verifique suas permissões no Firebase."
-            );
+            mensagem.textContent =
+                "Não foi possível salvar a música.";
+        }
 
 
-        } finally {
-
-            carregando =
-                false;
-
+        finally {
 
             btnSalvar.disabled =
                 false;
-
         }
-
     }
 );
 
@@ -442,16 +530,47 @@ btnCancelar.addEventListener(
     "click",
     () => {
 
-        limparFormulario();
+        idEdicao =
+            null;
 
-        mostrarMensagem("");
 
+        formMusica.reset();
+
+
+        tituloFormulario.textContent =
+            "Cadastrar música";
+
+
+        btnSalvar.textContent =
+            "Cadastrar música";
+
+
+        btnCancelar.hidden =
+            true;
+
+
+        mensagem.textContent = "";
     }
 );
 
 
 // ========================================
-// SAIR DA CONTA
+// IR PARA MUSICFLY
+// ========================================
+
+btnMusica.addEventListener(
+    "click",
+    () => {
+
+        window.location.replace(
+            "./main.html"
+        );
+    }
+);
+
+
+// ========================================
+// SAIR
 // ========================================
 
 btnSair.addEventListener(
@@ -475,159 +594,17 @@ btnSair.addEventListener(
         } catch (erro) {
 
             console.error(
+                "Erro ao sair:",
                 erro
             );
 
 
-            mostrarMensagem(
-                "Não foi possível sair da conta."
-            );
+            mensagem.textContent =
+                "Não foi possível sair da conta.";
 
 
             btnSair.disabled =
                 false;
-
         }
-
-    }
-);
-
-
-// ========================================
-// IR PARA MUSICFLY
-// ========================================
-
-btnMusica.addEventListener(
-    "click",
-    () => {
-
-        window.location.href =
-            "./main.html";
-
-    }
-);
-
-
-// ========================================
-// VERIFICAR LOGIN E ADMIN
-// ========================================
-
-let usuarioVerificado =
-    null;
-
-let verificacao =
-    0;
-
-
-observarUsuario(
-    async (usuario) => {
-
-        const tentativa =
-            ++verificacao;
-
-
-        usuarioVerificado =
-            usuario;
-
-
-        // ----------------------------------------
-        // NÃO ESTÁ LOGADO
-        // ----------------------------------------
-
-        if (!usuario) {
-
-            window.location.replace(
-                "./usuario.html"
-            );
-
-            return;
-        }
-
-
-        try {
-
-            const referencia =
-                doc(
-                    db,
-                    "usuarios",
-                    usuario.uid
-                );
-
-
-            const perfil =
-                await getDoc(
-                    referencia
-                );
-
-
-            if (
-                tentativa !==
-                verificacao
-            ) {
-                return;
-            }
-
-
-            // ----------------------------------------
-            // NÃO É ADMIN
-            // ----------------------------------------
-
-            if (
-                !perfil.exists() ||
-                perfil.data().tipo !== "admin"
-            ) {
-
-                alert(
-                    "Você não tem permissão para acessar o painel administrativo."
-                );
-
-
-                window.location.replace(
-                    "./main.html"
-                );
-
-
-                return;
-            }
-
-
-            // ----------------------------------------
-            // ADMINISTRADOR CONFIRMADO
-            // ----------------------------------------
-
-            emailAdmin.textContent =
-                usuario.email || "";
-
-
-            await carregarMusicas();
-
-
-        } catch (erro) {
-
-            if (
-                tentativa !==
-                verificacao
-            ) {
-                return;
-            }
-
-
-            console.error(
-                "Erro ao verificar administrador:",
-                erro
-            );
-
-
-            alert(
-                "Não foi possível verificar suas permissões."
-            );
-
-
-            window.location.replace(
-                "./main.html"
-            );
-
-        }
-
     }
 );

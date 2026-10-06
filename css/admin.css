@@ -1,0 +1,432 @@
+/* ========================================
+   ADMIN
+======================================== */
+
+.admin-body {
+    min-height: 100vh;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.admin-header {
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 15px 35px;
+
+    background: rgba(13, 4, 18, 0.9);
+
+    border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    backdrop-filter: blur(15px);
+}
+
+.admin-header h1 {
+    font-size: 26px;
+}
+
+
+/* ========================================
+   AÇÕES DO HEADER
+======================================== */
+
+.admin-header-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+#emailAdmin {
+    color: #cbb5d7;
+
+    font-size: 14px;
+
+    max-width: 230px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   BOTÕES HEADER
+======================================== */
+
+#btnMusica,
+#btnSair {
+    padding: 9px 15px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    color: #ffffff;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+#btnMusica {
+    background: #542080;
+}
+
+#btnMusica:hover {
+    background: #6f2ba6;
+
+    transform: translateY(-1px);
+}
+
+#btnSair {
+    background: #7b2cbf;
+}
+
+#btnSair:hover {
+    background: #9d4edd;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.admin-container {
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 45px 25px 70px;
+}
+
+
+/* ========================================
+   INTRODUÇÃO
+======================================== */
+
+.admin-intro {
+    margin-bottom: 30px;
+}
+
+.admin-intro h2 {
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.admin-intro p {
+    color: #bca6c8;
+
+    line-height: 1.6;
+}
+
+.admin-permissao {
+    margin-top: 12px;
+
+    color: #d8bce7 !important;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   CARD
+======================================== */
+
+.admin-card {
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    background: rgba(31, 10, 45, 0.88);
+
+    border: 1px solid rgba(157, 78, 221, 0.25);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.admin-card h3 {
+    margin-bottom: 22px;
+
+    font-size: 21px;
+}
+
+
+/* ========================================
+   CAMPOS
+======================================== */
+
+.campo-admin {
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: 20px;
+}
+
+.campo-admin label {
+    margin-bottom: 8px;
+
+    color: #eee0f5;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.campo-admin input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border-radius: 11px;
+
+    border: 1px solid #4d2464;
+
+    outline: none;
+
+    background: #16091f;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.campo-admin input::placeholder {
+    color: #8f789c;
+}
+
+.campo-admin input:focus {
+    border-color: #9d4edd;
+
+    box-shadow:
+        0 0 0 3px rgba(157, 78, 221, 0.15);
+}
+
+.campo-admin small {
+    margin-top: 7px;
+
+    color: #927e9d;
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   BOTÕES DO FORMULÁRIO
+======================================== */
+
+.admin-form-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.admin-form-buttons button {
+    padding: 12px 20px;
+
+    border-radius: 11px;
+
+    font-weight: bold;
+
+    color: #ffffff;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+#btnSalvar {
+    background: #7b2cbf;
+}
+
+#btnSalvar:hover {
+    background: #9d4edd;
+
+    transform: translateY(-1px);
+}
+
+#btnCancelar {
+    background: #42214f;
+}
+
+#btnCancelar:hover {
+    background: #593067;
+}
+
+
+/* ========================================
+   MENSAGEM
+======================================== */
+
+#mensagem {
+    margin: 15px 0;
+
+    color: #cdb8d7;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   LISTA
+======================================== */
+
+.lista-card {
+    margin-top: 30px;
+}
+
+.lista-titulo {
+    margin-bottom: 20px;
+}
+
+.lista-titulo h3 {
+    margin-bottom: 7px;
+}
+
+.lista-titulo p {
+    color: #a993b2;
+
+    font-size: 14px;
+}
+
+
+/* ========================================
+   LISTA DE MÚSICAS
+======================================== */
+
+.lista-musicas-admin {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* ========================================
+   CARD GERADO PELO JAVASCRIPT
+======================================== */
+
+.lista-musicas-admin > div,
+.lista-musicas-admin > article {
+    padding: 18px;
+
+    background: rgba(18, 5, 27, 0.75);
+
+    border: 1px solid rgba(157, 78, 221, 0.18);
+
+    border-radius: 14px;
+}
+
+
+/* ========================================
+   ÁUDIO
+======================================== */
+
+.lista-musicas-admin audio {
+    width: 100%;
+
+    margin-top: 12px;
+}
+
+
+/* ========================================
+   BOTÕES GERADOS PELO JAVASCRIPT
+======================================== */
+
+.lista-musicas-admin button {
+    margin-top: 12px;
+
+    margin-right: 8px;
+
+    padding: 8px 14px;
+
+    border-radius: 9px;
+
+    background: #7b2cbf;
+
+    color: #ffffff;
+
+    font-weight: bold;
+}
+
+.lista-musicas-admin button:hover {
+    background: #9d4edd;
+}
+
+
+/* ========================================
+   CELULAR
+======================================== */
+
+@media (max-width: 700px) {
+
+    .admin-header {
+        padding: 14px 18px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .admin-header-actions {
+        width: 100%;
+
+        flex-wrap: wrap;
+    }
+
+    #emailAdmin {
+        width: 100%;
+
+        max-width: none;
+    }
+
+    .admin-container {
+        padding: 35px 18px 50px;
+    }
+
+    .admin-card {
+        padding: 22px 18px;
+    }
+
+    .admin-intro h2 {
+        font-size: 27px;
+    }
+
+    .admin-form-buttons {
+        flex-direction: column;
+    }
+
+    .admin-form-buttons button {
+        width: 100%;
+    }
+
+}
