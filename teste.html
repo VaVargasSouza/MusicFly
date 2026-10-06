@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Firebase</title>
+</head>
+
+<body>
+
+    <h1>Teste Firebase</h1>
+
+    <input
+        type="text"
+        id="nome"
+        placeholder="Nome"
+    >
+
+    <input
+        type="email"
+        id="email"
+        placeholder="E-mail"
+    >
+
+    <input
+        type="password"
+        id="senha"
+        placeholder="Senha"
+    >
+
+    <button id="cadastrar">
+        Cadastrar
+    </button>
+
+    <button id="login">
+        Login
+    </button>
+
+    <button id="logout">
+        Logout
+    </button>
+
+
+    <script type="module">
+
+        import {
+            cadastrarUsuario,
+            fazerLogin,
+            fazerLogout
+        } from "./js/auth.js";
+
+        // CADASTRO
+       
+        document
+            .getElementById("cadastrar")
+            .addEventListener("click", async () => {
+
+                const nome =
+                    document.getElementById("nome").value;
+
+                const email =
+                    document.getElementById("email").value;
+
+                const senha =
+                    document.getElementById("senha").value;
+
+
+                try {
+
+                    await cadastrarUsuario(
+                        email,
+                        senha,
+                        nome
+                    );
+
+                    alert("Cadastro realizado!");
+
+                } catch (erro) {
+
+                    alert("Erro: " + erro.message);
+
+                }
+
+            });
+
+
+        // ==============================
+        // LOGIN
+        // ==============================
+
+        document
+            .getElementById("login")
+            .addEventListener("click", async () => {
+
+                const email =
+                    document.getElementById("email").value;
+
+                const senha =
+                    document.getElementById("senha").value;
+
+
+                try {
+
+                    await fazerLogin(
+                        email,
+                        senha
+                    );
+
+                    alert("Login realizado!");
+
+                    window.location.href = 
+                    "./admin.html";
+
+                } catch (erro) {
+
+                    alert("Erro: " + erro.message);
+
+                }
+
+            });
+
+
+
+
+        // ==============================
+        // LOGOUT
+        // ==============================
+
+        document
+            .getElementById("logout")
+            .addEventListener("click", async () => {
+
+                try {
+
+                    await fazerLogout();
+
+                    alert("Você saiu da conta!");
+
+                } catch (erro) {
+
+                    alert("Erro: " + erro.message);
+
+                }
+
+            });
+
+    </script>
+
+</body>
+
+</html>
+

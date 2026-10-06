@@ -1,4 +1,3 @@
-
 import { observarUsuario, fazerLogout } from "./auth.js";
 import { listarMusicas } from "./musicas.js";
 
@@ -40,9 +39,11 @@ async function carregarMusicas() {
             const artista = criarElemento("p", musica.artista);
 
             const audio = document.createElement("audio");
+
             audio.controls = true;
             audio.preload = "none";
             audio.src = musica.audioUrl;
+
             audio.setAttribute(
                 "aria-label",
                 `Reproduzir ${musica.titulo} - ${musica.artista}`
@@ -50,7 +51,8 @@ async function carregarMusicas() {
 
             // Evita reproduzir várias músicas ao mesmo tempo.
             audio.addEventListener("play", () => {
-                document.querySelectorAll(".lista-musicas audio")
+                document
+                    .querySelectorAll(".lista-musicas audio")
                     .forEach((outroAudio) => {
                         if (outroAudio !== audio) {
                             outroAudio.pause();
@@ -62,6 +64,7 @@ async function carregarMusicas() {
             card.append(informacoes, audio);
             lista.append(card);
         });
+
     } catch (erro) {
         console.error("Erro ao carregar músicas:", erro);
 
@@ -72,15 +75,19 @@ async function carregarMusicas() {
 
 // Verifica se existe uma sessão autenticada.
 observarUsuario(async (usuario) => {
+
     if (!usuario) {
         window.location.replace("./usuario.html");
         return;
     }
 
     // Evita recarregar a lista se o mesmo usuário continuar conectado.
-    if (usuarioAtual === usuario.uid) return;
+    if (usuarioAtual === usuario.uid) {
+        return;
+    }
 
     usuarioAtual = usuario.uid;
+
     emailUsuario.textContent = usuario.email || "";
 
     await carregarMusicas();
@@ -88,14 +95,21 @@ observarUsuario(async (usuario) => {
 
 // Botão de sair.
 btnSair.addEventListener("click", async () => {
+
     btnSair.disabled = true;
 
     try {
         await fazerLogout();
+
         window.location.replace("./usuario.html");
+
     } catch (erro) {
+
         console.error("Erro ao sair:", erro);
-        mensagem.textContent = "Não foi possível sair da conta.";
+
+        mensagem.textContent =
+            "Não foi possível sair da conta.";
+
         btnSair.disabled = false;
     }
 });
