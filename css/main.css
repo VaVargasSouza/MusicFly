@@ -1,247 +1,224 @@
-/* ========================================
-   PÁGINA PRINCIPAL
-======================================== */
 
 .main-body {
     min-height: 100vh;
 }
 
-
-/* ========================================
-   HEADER
-======================================== */
-
 .main-header {
     min-height: 72px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 20px;
-
     padding: 15px 35px;
-
-    background: rgba(13, 4, 18, 0.88);
-
-    border-bottom: 1px solid rgba(157, 78, 221, 0.2);
-
+    background: rgba(13, 4, 18, .92);
+    border-bottom: 1px solid rgba(157, 78, 221, .2);
     position: sticky;
     top: 0;
     z-index: 10;
-
     backdrop-filter: blur(15px);
 }
 
 .main-header h1 {
     font-size: 26px;
-
-    white-space: nowrap;
 }
-
-
-/* ========================================
-   ÁREA DO USUÁRIO
-======================================== */
 
 .usuario-area {
     display: flex;
     align-items: center;
-
     gap: 15px;
 }
 
 #emailUsuario {
     color: #cbb5d7;
-
     font-size: 14px;
-
     max-width: 250px;
-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-
-/* ========================================
-   BOTÃO SAIR
-======================================== */
-
-#btnSair {
-    padding: 9px 17px;
-
+#btnSair,
+.biblioteca button,
+.form-playlist button,
+#detalhePlaylist button {
+    padding: 10px 15px;
     border-radius: 10px;
-
     background: #7b2cbf;
-
-    color: #ffffff;
-
+    color: white;
     font-weight: bold;
-
-    transition: background 0.2s;
 }
 
-#btnSair:hover {
+#btnSair:hover,
+.biblioteca button:hover,
+.form-playlist button:hover,
+#detalhePlaylist button:hover {
     background: #9d4edd;
 }
 
-
-/* ========================================
-   CONTAINER
-======================================== */
-
 .main-container {
     width: 100%;
-
-    max-width: 1100px;
-
+    max-width: 1150px;
     margin: 0 auto;
-
-    padding: 50px 25px 70px;
+    padding: 40px 25px 70px;
 }
 
-
-/* ========================================
-   BOAS-VINDAS
-======================================== */
-
 .boas-vindas {
-    margin-bottom: 45px;
+    margin-bottom: 35px;
 }
 
 .boas-vindas h2 {
-    font-size: 34px;
-
+    font-size: 32px;
     margin-bottom: 10px;
 }
 
-.boas-vindas p {
+.boas-vindas p,
+.playlist-card p,
+.musica-card p {
     color: #bca6c8;
-
-    font-size: 16px;
 }
 
+.biblioteca {
+    margin-bottom: 40px;
+}
 
-/* ========================================
-   BIBLIOTECA
-======================================== */
-
-.biblioteca h3 {
-    font-size: 22px;
-
+.biblioteca > h3 {
+    font-size: 23px;
     margin-bottom: 20px;
 }
 
-
-/* ========================================
-   MENSAGEM
-======================================== */
-
-#mensagem {
-    color: #aa96b5;
-
-    margin-bottom: 20px;
-}
-
-
-/* ========================================
-   LISTA
-======================================== */
-
-.lista-musicas {
+.form-playlist {
     display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: end;
+    gap: 15px;
+    padding: 20px;
+    margin-bottom: 18px;
+    border-radius: 16px;
+    background: rgba(31, 10, 45, .85);
+    border: 1px solid rgba(157, 78, 221, .25);
+}
 
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(280px, 1fr)
-        );
+.campo-playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
+.campo-playlist label {
+    font-size: 14px;
+    color: #eee0f5;
+    font-weight: bold;
+}
+
+.campo-playlist input,
+.botoes-musica select {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #4d2464;
+    background: #16091f;
+    color: white;
+}
+
+#mensagem,
+#mensagemPlaylist {
+    color: #cbb5d7;
+    margin: 12px 0;
+}
+
+.lista-musicas,
+.lista-playlists {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 18px;
 }
 
-
-/* ========================================
-   CARD DA MÚSICA
-======================================== */
-
-.musica-card {
-    padding: 20px;
-
-    background: rgba(31, 10, 45, 0.85);
-
-    border: 1px solid rgba(157, 78, 221, 0.22);
-
-    border-radius: 18px;
-
-    transition:
-        transform 0.2s,
-        border-color 0.2s,
-        box-shadow 0.2s;
+.musica-card,
+.playlist-card {
+    min-width: 0;
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(31, 10, 45, .88);
+    border: 1px solid rgba(157, 78, 221, .25);
+    overflow-wrap: anywhere;
 }
 
-.musica-card:hover {
-    transform: translateY(-3px);
-
-    border-color: rgba(157, 78, 221, 0.55);
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-
-/* ========================================
-   INFORMAÇÕES
-======================================== */
-
-.musica-info {
-    margin-bottom: 16px;
-}
-
-.musica-info h4 {
-    font-size: 18px;
-
-    margin-bottom: 6px;
-
-    color: #ffffff;
-}
-
-.musica-info p {
-    color: #bca6c8;
-
-    font-size: 14px;
-}
-
-
-/* ========================================
-   ÁUDIO
-======================================== */
-
-.musica-card audio {
+.capa-musica {
+    display: block;
     width: 100%;
-
-    height: 40px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    background: #321052;
 }
 
+.musica-card h4,
+.playlist-card h4 {
+    font-size: 17px;
+    margin-bottom: 6px;
+}
 
-/* ========================================
-   CELULAR
-======================================== */
+.musica-card p {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
 
-@media (max-width: 650px) {
+.musica-card audio,
+.musica-playlist audio {
+    width: 100%;
+    margin: 10px 0;
+}
 
+.botoes-musica {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.botoes-musica button {
+    width: 100%;
+}
+
+.playlist-card button {
+    margin: 8px 5px 0 0;
+}
+
+.playlist-card .capa-musica {
+    max-width: 100%;
+}
+
+#detalhePlaylist {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(31, 10, 45, .85);
+}
+
+#detalhePlaylist h3 {
+    margin-bottom: 15px;
+}
+
+.musica-playlist {
+    display: grid;
+    grid-template-columns: 1fr minmax(180px, 260px) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(157, 78, 221, .2);
+}
+
+@media (max-width: 760px) {
     .main-header {
-        padding: 14px 18px;
-
         align-items: flex-start;
-
         flex-direction: column;
+        padding: 15px 18px;
     }
 
     .usuario-area {
         width: 100%;
-
         justify-content: space-between;
     }
 
@@ -250,15 +227,27 @@
     }
 
     .main-container {
-        padding: 35px 18px 50px;
+        padding: 30px 16px 50px;
     }
 
-    .boas-vindas h2 {
-        font-size: 28px;
-    }
-
-    .lista-musicas {
+    .form-playlist {
         grid-template-columns: 1fr;
     }
 
+    .lista-musicas,
+    .lista-playlists {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .musica-playlist {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 420px) {
+    .lista-musicas,
+    .lista-playlists {
+        grid-template-columns: 1fr;
+    }
 }

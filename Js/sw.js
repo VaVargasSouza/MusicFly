@@ -18,6 +18,7 @@ const ARQUIVOS = [
     "./js/usuario.js",
     "./js/main.js",
     "./js/admin.js",
+    "./js/playlists.js",
 
     "./manifest.json"
 ];

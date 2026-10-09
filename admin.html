@@ -1,269 +1,88 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="theme-color"
-        content="#7b2cbf"
-    >
-
-    <meta
-        name="description"
-        content="MusicFly - Administração de músicas"
-    >
-
-    <link
-        rel="manifest"
-        href="./manifest.json"
-    >
-
-    <link
-        rel="icon"
-        type="image/png"
-        href="./icons/icon-192.png"
-    >
-
-    <link
-        rel="stylesheet"
-        href="./css/style.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="./css/admin.css"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7b2cbf">
+    <meta name="description" content="MusicFly - Administração de músicas">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/png" href="./icons/icon-192.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/admin.css">
     <title>MusicFly | Administração</title>
-
 </head>
 
-
 <body class="admin-body">
-
-
-    <!-- CABEÇALHO -->
-
     <header class="admin-header">
-
-        <h1>
-            🦋 MusicFly
-        </h1>
-
+        <h1>🦋 MusicFly</h1>
 
         <div class="admin-header-actions">
-
             <span id="emailAdmin"></span>
-
-
-            <button
-                id="btnMusica"
-                type="button"
-            >
-                Ir para MusicFly
-            </button>
-
-
-            <button
-                id="btnSair"
-                type="button"
-            >
-                Sair
-            </button>
-
+            <button id="btnMusica" type="button">Ir para MusicFly</button>
+            <button id="btnSair" type="button">Sair</button>
         </div>
-
     </header>
 
-
-    <!-- CONTEÚDO -->
-
     <main class="admin-container">
-
-
-        <!-- INTRODUÇÃO -->
-
         <section class="admin-intro">
-
-            <h2>
-                Adicionar músicas
-            </h2>
-
-            <p>
-                Gerencie as músicas disponíveis
-                no MusicFly.
-            </p>
-
-
+            <h2>Gerenciar músicas</h2>
+            <p>Cadastre, edite e exclua músicas do MusicFly.</p>
             <p class="admin-permissao">
-
-                Somente administradores podem
-                adicionar, editar e excluir músicas.
-
+                Somente administradores podem gerenciar músicas.
             </p>
-
         </section>
-
-
-        <!-- FORMULÁRIO -->
 
         <section class="admin-card">
-
-            <h3 id="tituloFormulario">
-                Cadastrar música
-            </h3>
-
+            <h3 id="tituloFormulario">Cadastrar música</h3>
 
             <form id="formMusica">
-
-
-                <!-- TÍTULO -->
-
                 <div class="campo-admin">
-
-                    <label for="titulo">
-                        Título da música
-                    </label>
-
-                    <input
-                        type="text"
-                        id="titulo"
-                        name="titulo"
-                        placeholder="Digite o título da música"
-                        autocomplete="off"
-                        required
-                    >
-
+                    <label for="titulo">Título da música</label>
+                    <input id="titulo" name="titulo" type="text"
+                        placeholder="Título da música" required>
                 </div>
 
-
-                <!-- ARTISTA -->
-
                 <div class="campo-admin">
-
-                    <label for="artista">
-                        Artista
-                    </label>
-
-                    <input
-                        type="text"
-                        id="artista"
-                        name="artista"
-                        placeholder="Digite o nome do artista"
-                        autocomplete="off"
-                        required
-                    >
-
+                    <label for="artista">Artista</label>
+                    <input id="artista" name="artista" type="text"
+                        placeholder="Nome do artista" required>
                 </div>
 
-
-                <!-- URL DO ÁUDIO -->
-
                 <div class="campo-admin">
-
-                    <label for="audioUrl">
-                        URL do áudio
-                    </label>
-
-                    <input
-                        type="url"
-                        id="audioUrl"
-                        name="audioUrl"
-                        placeholder="Cole aqui a URL do áudio"
-                        autocomplete="off"
-                        required
-                    >
-
-                    <small>
-                        O áudio precisa estar disponível
-                        para reprodução.
-                    </small>
-
+                    <label for="capaUrl">URL da capa</label>
+                    <input id="capaUrl" name="capaUrl" type="url"
+                        placeholder="https://site.com/capa.jpg">
+                    <small>Opcional. Use um link direto para uma imagem.</small>
                 </div>
 
-
-                <!-- BOTÕES -->
+                <div class="campo-admin">
+                    <label for="audioUrl">URL do áudio</label>
+                    <input id="audioUrl" name="audioUrl" type="url"
+                        placeholder="https://site.com/musica.mp3" required>
+                    <small>O endereço deve permitir a reprodução do áudio.</small>
+                </div>
 
                 <div class="admin-form-buttons">
-
-                    <button
-                        id="btnSalvar"
-                        type="submit"
-                    >
-                        Cadastrar música
-                    </button>
-
-
-                    <button
-                        id="btnCancelar"
-                        type="button"
-                        hidden
-                    >
-                        Cancelar
-                    </button>
-
+                    <button id="btnSalvar" type="submit">Cadastrar música</button>
+                    <button id="btnCancelar" type="button" hidden>Cancelar</button>
                 </div>
-
             </form>
-
         </section>
 
-
-        <!-- MENSAGEM -->
-
-        <p
-            id="mensagem"
-            role="status"
-            aria-live="polite"
-        ></p>
-
-
-        <!-- LISTA DE MÚSICAS -->
+        <p id="mensagem" role="status" aria-live="polite"></p>
 
         <section class="admin-card lista-card">
-
             <div class="lista-titulo">
-
-                <h3>
-                    Músicas cadastradas
-                </h3>
-
-                <p>
-                    Confira e gerencie as músicas
-                    disponíveis no MusicFly.
-                </p>
-
+                <h3>Músicas cadastradas</h3>
+                <p>Edite os dados ou remova uma música.</p>
             </div>
 
-
-            <div
-                id="listaMusicas"
-                class="lista-musicas-admin"
-            ></div>
-
+            <div id="listaMusicas" class="lista-musicas-admin"></div>
         </section>
-
     </main>
 
-
-    <!-- JAVASCRIPT -->
-
-    <script
-        type="module"
-        src="./js/admin.js"
-    ></script>
-
-    <script
-        src="./js/pwa.js"
-    ></script>
-
+    <script type="module" src="./js/admin.js"></script>
+    <script src="./js/pwa.js"></script>
 </body>
-
 </html>

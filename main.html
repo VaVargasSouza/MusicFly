@@ -1,138 +1,70 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="theme-color"
-        content="#7b2cbf"
-    >
-
-    <meta
-        name="description"
-        content="MusicFly - Ouça suas músicas favoritas"
-    >
-
-    <link
-        rel="manifest"
-        href="./manifest.json"
-    >
-
-    <link
-        rel="icon"
-        type="image/png"
-        href="./icons/icon-192.png"
-    >
-
-    <link
-        rel="stylesheet"
-        href="./css/style.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="./css/main.css"
-    >
-
-    <title>MusicFly | Suas músicas</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7b2cbf">
+    <meta name="description" content="MusicFly - Ouça suas músicas favoritas">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/png" href="./icons/icon-192.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>MusicFly | Sua música</title>
 </head>
 
-
 <body class="main-body">
-
-
-    <!-- CABEÇALHO -->
-
     <header class="main-header">
-
-        <h1>
-            🦋 MusicFly
-        </h1>
-
+        <h1>🦋 MusicFly</h1>
 
         <div class="usuario-area">
-
             <span id="emailUsuario"></span>
-
-            <button
-                id="btnSair"
-                type="button"
-            >
-                Sair
-            </button>
-
+            <button id="btnSair" type="button">Sair</button>
         </div>
-
     </header>
 
-
-    <!-- CONTEÚDO -->
-
     <main class="main-container">
-
-
-        <!-- BOAS-VINDAS -->
-
         <section class="boas-vindas">
-
-            <h2>
-                Suas músicas
-            </h2>
-
-            <p>
-                Encontre sua próxima música favorita.
-            </p>
-
+            <h2>Sua música, seu mundo</h2>
+            <p>Ouça suas favoritas e crie suas próprias playlists.</p>
         </section>
-
-
-        <!-- BIBLIOTECA -->
 
         <section class="biblioteca">
+            <h3>Suas playlists</h3>
 
-            <h3>
-                Músicas disponíveis
-            </h3>
+            <form id="formPlaylist" class="form-playlist">
+                <div class="campo-playlist">
+                    <label for="nomePlaylist">Nome da playlist</label>
+                    <input id="nomePlaylist" type="text"
+                        placeholder="Ex.: Minhas favoritas" required>
+                </div>
 
+                <div class="campo-playlist">
+                    <label for="capaPlaylist">URL da capa (opcional)</label>
+                    <input id="capaPlaylist" type="url"
+                        placeholder="https://site.com/capa.jpg">
+                </div>
 
-            <p
-                id="mensagem"
-                role="status"
-                aria-live="polite"
-            >
-                Carregando músicas...
-            </p>
+                <button id="btnCriarPlaylist" type="submit">
+                    Criar playlist
+                </button>
+            </form>
 
-
-            <div
-                id="listaMusicas"
-                class="lista-musicas"
-            ></div>
-
+            <p id="mensagemPlaylist" role="status" aria-live="polite"></p>
+            <div id="listaPlaylists" class="lista-playlists"></div>
+            <div id="detalhePlaylist"></div>
         </section>
 
+        <section class="biblioteca">
+            <h3>Músicas disponíveis</h3>
+            <p id="mensagem" role="status" aria-live="polite">
+                Carregando músicas...
+            </p>
+            <div id="listaMusicas" class="lista-musicas"></div>
+        </section>
     </main>
 
-
-    <!-- JAVASCRIPT -->
-
-    <script
-        type="module"
-        src="./js/main.js"
-    ></script>
-
-    <script
-        src="./js/pwa.js"
-    ></script>
-
+    <script type="module" src="./js/main.js"></script>
+    <script src="./js/pwa.js"></script>
 </body>
-
 </html>

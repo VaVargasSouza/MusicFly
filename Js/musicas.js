@@ -13,52 +13,48 @@ import {
 
 import { db } from "./database.js";
 
-// Cadastrar música
+const colecaoMusicas = collection(db, "musicas");
+
 export async function cadastrarMusica(dados) {
     const musica = {
-        titulo: dados.titulo,
-        artista: dados.artista,
-        audioUrl: dados.audioUrl,
+        titulo: dados.titulo.trim(),
+        artista: dados.artista.trim(),
+        audioUrl: dados.audioUrl.trim(),
+        capaUrl: dados.capaUrl?.trim() || "",
         criadoEm: serverTimestamp()
     };
 
     const resultado = await addDoc(
-        collection(db, "musicas"),
+        colecaoMusicas,
         musica
     );
 
     return resultado.id;
 }
 
-// Listar músicas
 export async function listarMusicas() {
     const consulta = query(
-        collection(db, "musicas"),
+        colecaoMusicas,
         orderBy("criadoEm", "desc")
     );
 
     const resultado = await getDocs(consulta);
 
-    return resultado.docs.map(documento => ({
+    return resultado.docs.map((documento) => ({
         id: documento.id,
         ...documento.data()
     }));
 }
 
-// Editar música
 export async function editarMusica(id, dados) {
-    const referencia = doc(db, "musicas", id);
-
-    await updateDoc(referencia, {
-        titulo: dados.titulo,
-        artista: dados.artista,
-        audioUrl: dados.audioUrl
+    await updateDoc(doc(db, "musicas", id), {
+        titulo: dados.titulo.trim(),
+        artista: dados.artista.trim(),
+        audioUrl: dados.audioUrl.trim(),
+        capaUrl: dados.capaUrl?.trim() || ""
     });
 }
 
-// Excluir música
 export async function excluirMusica(id) {
-    const referencia = doc(db, "musicas", id);
-
-    await deleteDoc(referencia);
+    await deleteDoc(doc(db, "musicas", id));
 }
