@@ -1,3 +1,3 @@
 window.addEventListener("load", () => {
-    window.location.href = "./main.html";
+    window.location.href = "./teste.html";
 })
